@@ -1,0 +1,152 @@
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+  
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./fonts/Pretendard-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+  
+  
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                 Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+                 sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #ffd369;
+    margin-bottom: 2rem;
+}
+
+.timeline {
+    position: relative;
+    border-left: 2px solid #444;
+    padding-left: 2rem;
+    margin-left: 2rem;
+}
+
+.era {
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.era::before {
+    content: '';
+    position: absolute;
+    left: -2.625rem;
+    top: 0.6rem;
+    width: 14px;
+    height: 14px;
+    background-color: #444;
+    border-radius: 50%;
+    border: 2px solid #444;
+    transition: all 0.3s ease; /* 애니메이션 */
+}
+  
+.era.active::before {
+    background-color: #ffb86c;
+    border-color: #ffb86c;
+    transform: scale(1.3); /* 클릭 시 부드럽게 확대 */
+    transition: all 0.3s ease;
+}
+
+.branch.active {
+    transform: translateX(4px);
+    transition: transform 0.2s ease;
+}
+
+.era h2 {
+    color: #88c0d0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.branch {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.branch-title {
+    font-weight: bold;
+    color: #d08770;
+}
+
+.branch.active {
+    transform: translateX(4px) scale(1.05); /* 약간 확대 */
+    transition: transform 0.2s ease, font-size 0.3s ease, color 0.3s ease;
+}
+  
+.branch.active .branch-title {
+    font-weight: bold; /* Pretendard-Bold로 적용됨 */
+    font-size: 1.2rem;
+    color: #ffb86c;
+}
+
+.desc {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+        max-height 0.5s ease-out,
+        opacity 0.3s ease-out;
+}
+  
+  .branch:hover .desc:not(.show) {
+    max-height: 500px;
+    opacity: 1;
+    transition:
+        max-height 0.6s ease-in 0.1s,
+        opacity 0.3s ease-in 0.1s;
+}
+
+
+.desc {
+    color: #bdbdbd;
+    margin-left: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+}
+
+.desc.show {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.icon {
+    margin-left: 1rem;
+    margin-top: 0.3rem;
+    width: 30px;
+    height: 30px;
+    /* 이미지 아이콘은 여기 src로 삽입 → 예: <img src="img/chaos.png" class="icon"> */
+}
+
+/* ERA에 마우스 올리면 점만 강조 */
+.era:hover::before {
+    background-color: #ffb86c;
+    border-color: #ffb86c;
+    transform: scale(1.3);
+    transition: all 0.3s ease;
+}
+  
+/* BRANCH에만 마우스 올리면 상세 설명 열림 */
+.branch:hover .desc:not(.show) {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.6s ease-in 0.15s, opacity 0.4s ease-in 0.15s;
+}
